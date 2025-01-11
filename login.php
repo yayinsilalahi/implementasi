@@ -166,7 +166,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
         </div>
     </div>
     <div class="right">
-        <img src="image/robotcute2.png" alt="Robot Cute">
+        <img src="robotcute2.png" alt="">
     </div>
 </body>
 

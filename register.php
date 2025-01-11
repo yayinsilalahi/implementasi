@@ -156,7 +156,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
 
 <body>
     <div class="left">
-        <img src="image/robotcute1.png" alt="Robot Cute">
+        <img src="robotcute1.png" alt="">
     </div>
 
     <div class="right">
