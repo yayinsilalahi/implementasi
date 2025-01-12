@@ -31,9 +31,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
 
 <!-- <!DOCTYPE html>
 <html>
+
 <head>
     <title>Manajemen Pengguna</title>
 </head>
+
 <body>
     <h1>Login</h1>
     <form method="post">
@@ -43,8 +45,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
     </form>
 
     <a href="/implementasi/register.php">Belum Punya Akun? Daftar Sekarang</a>
-</body>
-</html> -->
+</body> -->
+
+</html>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -135,6 +138,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
             background-color: #0d6efd;
         }
 
+        .form-container .register-link {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        .form-container .register-link a {
+            color: #0d6efd;
+            text-decoration: none;
+        }
+
+        .form-container .register-link a:hover {
+            text-decoration: underline;
+        }
+
         .right {
             width: 50%;
             height: 100%;
@@ -163,6 +181,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
                 <input type="password" name="password" placeholder="Password" required><br>
                 <button type="submit" name="login">Login</button>
             </form>
+            <div class="register-link">
+                <a href="/implementasi/register.php">Belum Punya Akun? Daftar Sekarang</a>
+            </div>
         </div>
     </div>
     <div class="right">

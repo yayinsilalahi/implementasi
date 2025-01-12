@@ -3,7 +3,7 @@ include 'koneksi.php';
 session_start();
 
 if (!isset($_SESSION['user_id'])) {
-    header('Location: login.php'); 
+    header('Location: login.php');
     exit;
 }
 
@@ -21,8 +21,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_username'])) {
     $stmt = $conn->prepare("UPDATE users SET name = ? WHERE id = ?");
     $stmt->bind_param("si", $new_username, $id);
     if ($stmt->execute()) {
-        $_SESSION['user_name'] = $new_username; 
-        header('Location: update.php'); 
+        $_SESSION['user_name'] = $new_username;
+        header('Location: update.php');
         exit;
     } else {
         echo "Kesalahan: " . $stmt->error;
@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_password'])) {
     $stmt = $conn->prepare("UPDATE users SET password = ? WHERE id = ?");
     $stmt->bind_param("si", $hashed_password, $id);
     if ($stmt->execute()) {
-        header('Location: update.php'); 
+        header('Location: update.php');
         exit;
     } else {
         echo "Kesalahan: " . $stmt->error;
@@ -47,6 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_password'])) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -103,6 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_password'])) {
             width: 380px;
             margin-top: 70px;
         }
+
         .left-section a {
             text-decoration: none;
         }
@@ -144,7 +146,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_password'])) {
             position: relative;
         }
 
-        .right-section .input-group input{
+        .right-section .input-group input {
             border: none;
             border-radius: 30px;
             padding: 10px 20px;
@@ -167,89 +169,110 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_password'])) {
         .right-section .input-group .fa-eye {
             position: absolute;
             right: 20px;
-            top: 50%;
+            top: 40%;
             transform: translateY(-50%);
             cursor: pointer;
             color: #000;
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="left-section">
             <h1>Setting</h1>
             <img src="robot.png" alt="Robot">
             <a href="logout.php">
-                <i class="fas fa-sign-out-alt"></i> 
+                <i class="fas fa-sign-out-alt"></i>
             </a>
         </div>
         <div class="right-section">
             <div class="input-group">
                 <label for="username">Username</label>
-                <input type="text" id="user_id" name="name" value="<?php echo htmlspecialchars($name); ?>" readonly>
+                <input type="text" id="user_id" name="name" value="<?php echo htmlspecialchars($name); ?>" readonly style="border-radius: 15px;">
                 <button data-bs-toggle="modal" data-bs-target="#usernameModal">Ubah Username</button>
             </div>
             <div class="input-group">
                 <label for="password">Password</label>
-                <input type="password" id="password" value="******" readonly>
+                <input type="password" id="password" value="******" readonly style="border-radius: 15px;">
+                <i class="fa fa-eye" id="eye-icon"></i>
                 <button data-bs-toggle="modal" data-bs-target="#passwordModal">Ubah Password</button>
+
             </div>
         </div>
     </div>
 
-<!-- Modal untuk Mengubah Username -->
-<div class="modal fade" id="usernameModal" tabindex="-1" aria-labelledby="usernameModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <form method="post" action="update.php">
-            <div class="modal-content" style="border-radius: 20px; overflow: hidden;">
-                <div class="modal-header" style="background: linear-gradient(45deg, #6a11cb, #2575fc); color: white;">
-                    <h5 class="modal-title" id="usernameModalLabel">
-                        <i class="fas fa-user-edit"></i> Ubah Nama Pengguna
-                    </h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body" style="padding: 30px; background-color: #f8f9fa;">
-                    <div class="input-group">
-                        <label for="new-username" class="form-label" style="font-weight: bold;">Nama Pengguna Baru</label>
-                        <input type="text" id="new-username" name="new_username" class="form-control" placeholder="Masukkan nama pengguna baru" required>
+    <!-- Modal untuk Mengubah Username -->
+    <div class="modal fade" id="usernameModal" tabindex="-1" aria-labelledby="usernameModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <form method="post" action="update.php">
+                <div class="modal-content" style="border-radius: 20px; overflow: hidden;">
+                    <div class="modal-header" style="background: linear-gradient(45deg, #6a11cb, #2575fc); color: white;">
+                        <h5 class="modal-title" id="usernameModalLabel">
+                            <i class="fas fa-user-edit"></i> Ubah Nama Pengguna
+                        </h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" style="padding: 30px; background-color: #f8f9fa;">
+                        <div class="input-group">
+                            <label for="new-username" class="form-label" style="font-weight: bold;">Nama Pengguna Baru</label>
+                            <input type="text" id="new-username" name="new_username" class="form-control" placeholder="Masukkan nama pengguna baru" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer" style="background-color: #f1f1f1;">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-primary" name="update_username" style="background: linear-gradient(45deg, #6a11cb, #2575fc); border: none;">Simpan Perubahan</button>
                     </div>
                 </div>
-                <div class="modal-footer" style="background-color: #f1f1f1;">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                    <button type="submit" class="btn btn-primary" name="update_username" style="background: linear-gradient(45deg, #6a11cb, #2575fc); border: none;">Simpan Perubahan</button>
-                </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
-</div>
 
-<!-- Modal untuk Mengubah Password -->
-<div class="modal fade" id="passwordModal" tabindex="-1" aria-labelledby="passwordModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <form method="post" action="update.php">
-            <div class="modal-content" style="border-radius: 20px; overflow: hidden;">
-                <div class="modal-header" style="background: linear-gradient(45deg, #ff512f, #dd2476); color: white;">
-                    <h5 class="modal-title" id="passwordModalLabel">
-                        <i class="fas fa-lock"></i> Ubah Password
-                    </h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body" style="padding: 30px; background-color: #f8f9fa;">
-                    <div class="input-group">
-                        <label for="new-password" class="form-label" style="font-weight: bold;">Password Baru</label>
-                        <input type="password" id="new-password" name="new_password" class="form-control" placeholder="Masukkan password baru" required>
+    <!-- Modal untuk Mengubah Password -->
+    <div class="modal fade" id="passwordModal" tabindex="-1" aria-labelledby="passwordModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <form method="post" action="update.php">
+                <div class="modal-content" style="border-radius: 20px; overflow: hidden;">
+                    <div class="modal-header" style="background: linear-gradient(45deg, #ff512f, #dd2476); color: white;">
+                        <h5 class="modal-title" id="passwordModalLabel">
+                            <i class="fas fa-lock"></i> Ubah Password
+                        </h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" style="padding: 30px; background-color: #f8f9fa;">
+                        <div class="input-group">
+                            <label for="new-password" class="form-label" style="font-weight: bold;">Password Baru</label>
+                            <input type="password" id="new-password" name="new_password" class="form-control" placeholder="Masukkan password baru" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer" style="background-color: #f1f1f1;">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-danger" name="update_password" style="background: linear-gradient(45deg, #ff512f, #dd2476); border: none;">Simpan Perubahan</button>
                     </div>
                 </div>
-                <div class="modal-footer" style="background-color: #f1f1f1;">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                    <button type="submit" class="btn btn-danger" name="update_password" style="background: linear-gradient(45deg, #ff512f, #dd2476); border: none;">Simpan Perubahan</button>
-                </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
-</div>
+    <!-- Script Toggle Visibility Password -->
+    <script>
+        const passwordField = document.getElementById('password');
+        const eyeIcon = document.getElementById('eye-icon');
+
+        eyeIcon.addEventListener('click', function() {
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                eyeIcon.classList.remove('fa-eye');
+                eyeIcon.classList.add('fa-eye-slash');
+            } else {
+                passwordField.type = 'password';
+                eyeIcon.classList.remove('fa-eye-slash');
+                eyeIcon.classList.add('fa-eye');
+            }
+        });
+    </script>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

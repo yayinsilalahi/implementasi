@@ -146,6 +146,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
             background-color: #0d6efd;
         }
 
+        .form-container .register-link {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        .form-container .register-link a {
+            color: #0d6efd;
+            text-decoration: none;
+        }
+
+        .form-container .register-link a:hover {
+            text-decoration: underline;
+        }
+
         .left img {
             max-width: 100%;
             height: auto;
@@ -170,6 +185,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
                 <input type="password" name="confirm_password" placeholder="Konfirmasi Password" required><br>
                 <button type="submit" name="register">Daftar</button>
             </form>
+            <div class="register-link">
+                <a href="/implementasi/login.php">Sudah Punya Akun? Login Sekarang</a>
+            </div>
         </div>
     </div>
     </div>
