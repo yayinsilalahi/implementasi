@@ -88,7 +88,7 @@ if (!isset($_SESSION['user_id'])) {
      <h1>SELAMAT DATANG,</h1>
      <p><?php echo htmlspecialchars($_SESSION['user_name']); ?>!</p>
     </div>
-    <img src="home.png" alt="">
+    <img src="gambar1.png" alt="Gambar 1">
    </div>
   </div>
  </body>
