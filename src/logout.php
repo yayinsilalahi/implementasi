@@ -1,9 +1,9 @@
-// logout.php
 <?php
 
-session_start();
-session_unset();
-session_destroy();
-header('Location: login_form.php');
+include 'logout2.php';
+
+$logout = new Logout();
+$logout->execute();
+
+header($logout->getHeaders()[0]);
 exit();
-?>

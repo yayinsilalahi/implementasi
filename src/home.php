@@ -91,7 +91,7 @@ if (!isset($_SESSION['user_id'])) {
 <body>
     <div class="container">
         <div class="header">
-            <a href="update.php">
+            <a href="update_form.php">
                 <i class="fas fa-cog"></i>
             </a>
             <a href="logout.php">
