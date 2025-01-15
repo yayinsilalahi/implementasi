@@ -2,16 +2,6 @@
     "name": "acer/implementasi",
     "type": "project",
     "license": "MIT",
-    "autoload": {
-        "psr-4": {
-            "Acer\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Acer\\Tests\\": "tests/"
-        }
-    },
     "authors": [
         {
             "name": "NajwaFadiyah",

@@ -1,7 +1,4 @@
 <?php
-
-namespace Acer;
-
 include 'koneksi.php';
 session_start();
 

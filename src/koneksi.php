@@ -1,14 +1,12 @@
 <?php
 
-namespace Acer;
-
 $host = 'localhost';
 $username = 'root';
 $password = '';
 $dbname = 'evaluasi_implementasi';
 
 // Membuat Koneksi
-$conn = new \mysqli($host, $username, $password, $dbname);
+$conn = new mysqli($host, $username, $password, $dbname);
 
 // Cek Koneksi
 if ($conn->connect_error) {
